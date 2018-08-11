@@ -4,15 +4,13 @@
 
 Its the normal way of coding mergesort.
 
-gcc mergesort_normal.c 
-time ./a.out < Input.txt > output_0
+gcc mergesort_normal.c ; time ./a.out < Input.txt > output_0
 
 2. **Mergesort using child processes created using fork**
 
 It uses **shmget**  (for shared memory allocation) and **shmat** (for shared memory operations) functions. We create a shared memory space between the child process that we fork.  Each segment is split into left and right child which is sorted, the interesting part being they are working concurrently! The shmget()  requests the kernel to allocate a shared page for both the processes. shmat() attaches the System V shared memory segment identified by **shmid** to the address space of the calling process. 
 
-gcc mergesort_using_process.c 
-time ./a.out < Input.txt > output_1
+gcc mergesort_using_process.c ; time ./a.out < Input.txt > output_1
 
 **Why we need shared memory?**
 
@@ -24,8 +22,7 @@ It uses threads and  lock.
 There is one thread for every left and right child
 Lock is used when we are writing in array, basically when we call merge().
 
-gcc  mergesort_using_threads.c -lpthread
-time ./a.out < Input.txt > output_2
+gcc  mergesort_using_threads.c -lpthread ; time ./a.out < Input.txt > output_2
 
 **Time Analysis :**
 
